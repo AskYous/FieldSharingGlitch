@@ -1,0 +1,29 @@
+﻿@page "/"
+@inject IJSRuntime js;
+<h1>Blazor Field Sharing Glitch</h1>
+
+<input class="form form-control mt-4" @bind="filter" @bind:event="oninput" placeholder="Filter" />
+<small style="color: gray">Try filtering for 'yellow' to see the glitch happen.</small>
+<div class="mb-4"></div>
+
+<div class="row">
+    @foreach (var color in filteredColors)
+    {
+        <div class="col-4">
+            <ColorCard color="color" />
+        </div>
+    }
+</div>
+@code {
+    private string filter { get; set; }
+    private List<Color> colors = Color.SampleData;
+    private List<Color> filteredColors
+    {
+        get => colors.Where(c => c.SatisfiesQuery(filter)).ToList();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("focusFilter");
+    }
+}

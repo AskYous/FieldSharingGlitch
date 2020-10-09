@@ -1,0 +1,17 @@
+<div class="card">
+    <img class="card-img" src="@imageUrl" style="height: 400px;" />
+    <div class="card-body">
+        <small style="color:gray">Is the image accurate after you filter 👆?</small>
+        <h2>@color.Name</h2>
+        <p>@color.Description</p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Color color { get; set; }
+    private string imageUrl { get; set; }
+    protected override void OnInitialized()
+    {
+        imageUrl = color.ImgUrl;
+    }
+}
