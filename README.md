@@ -1,4 +1,4 @@
-# FieldSharingGlitch
+# Blazor Field Sharing Glitch
 
 ![](https://github.com/AskYous/FieldSharingGlitch/raw/master/Demo.gif)
 
